@@ -1,11 +1,16 @@
-function getShippingMessage(country, price, deliveryFee) {
-  const result = `Shipping to ${country} will cost ${
-    price + deliveryFee
-  } credits`;
-  return result;
+function formatMessage(message, maxLength) {
+  const stringLength = message.length;
+  if (stringLength <= maxLength) {
+    const result = message;
+    return result;
+  } else {
+    const result = message.slice(0, maxLength) + '...';
+    return result;
+  }
 }
-
-console.log(getShippingMessage('Australia', 120, 50));
-console.log(getShippingMessage('Germany', 80, 20));
-console.log(getShippingMessage('Sweden', 100, 20));
-console.log(getShippingMessage('The USA', 500, 55));
+console.log(formatMessage('Curabitur ligula sapien', 16)); // "Curabitur ligula..."
+console.log(formatMessage('Curabitur ligula sapien', 23)); // "Curabitur ligula sapien"
+console.log(formatMessage('Vestibulum facilisis purus nec', 20)); // "Vestibulum facilisis..."
+console.log(formatMessage('Vestibulum facilisis purus nec', 30)); // "Vestibulum facilisis purus nec"
+console.log(formatMessage('Nunc sed turpis a felis in nunc fringilla', 15)); // "Nunc sed turpis..."
+console.log(formatMessage('Nunc sed turpis a felis in nunc fringilla', 41)); // "Nunc sed turpis a felis in nunc fringilla"
